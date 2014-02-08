@@ -74,7 +74,9 @@ echo "Email: $email" >> $link_file
 echo "Phone: $phone" >> $link_file
 echo "Username: $username" >> $link_file
 
+
 #Youtube Profile
+echo >> $link_file
 echo "Possible Youtube Profile(s):" >> $link_file
 
 if [[ -s "$youtube_url" ]]; then
