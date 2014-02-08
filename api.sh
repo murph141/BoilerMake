@@ -37,6 +37,7 @@ mkdir -p Pictures
 
 
 
+#Youtube Profile
 touch $link_file
 echo "Youtube Profile:" > $link_file
 
@@ -50,7 +51,7 @@ fi
 
 
 
-
+#Pictures
 echo >> $link_file
 echo "Pictures:" >> $link_file
 
@@ -66,7 +67,7 @@ fi
 
 
 
-
+#Twitter Profile
 echo >> $link_file
 echo "Twitter Profile:" >> $link_file
 
@@ -79,7 +80,8 @@ else
 fi
 
 
-rm -f *.xml urls pics twitter youtube
+# Removes extra file
+rm -f urls pics twitter youtube
 
 clear
 cat ./$link_file
