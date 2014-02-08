@@ -162,7 +162,7 @@ fi
 
 
 # Removes extra file
-rm -f $api_file $url_file $clean_file $twitter_file $youtube_url $pictures $family_file $id_file
+rm -f $api_file $url_file $clean_file $twitter_file $youtube_url $pictures $family_file $id_file $date_file
 
 clear
 cat ./$link_file
