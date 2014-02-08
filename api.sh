@@ -6,6 +6,7 @@ clean_file=clean.xml
 twitter_url=twitter
 youtube_url=youtube
 pictures=pics
+link_file=Profiles
 
 clear
 echo "If you don't know any of the values, leave them blank"
@@ -31,13 +32,54 @@ grep twitter urls | grep -v Support | sort -u > $twitter_url
 grep youtube.com/user urls | sort -u > $youtube_url
 egrep -i "jpg|png|bmp" urls > $pictures
 
-#num_pics=`wc -l $pictures | awk '{ print $1 }'`
-
 i=1
-
 mkdir -p Pictures
 
-for item in `cat $pictures`; do
-  wget -O ./Pictures/pic$i.jpg $item
-  i=$[i+1]
-done
+
+
+touch $link_file
+echo "Youtube Profile:" > $link_file
+
+if [[ -s "$youtube_url" ]]; then
+  for item in `cat $youtube_url`; do
+    echo "$item" >> $link_file
+  done
+else
+  echo "No youtube profile found" >> $link_file
+fi
+
+
+
+
+echo >> $link_file
+echo "Pictures:" >> $link_file
+
+if [[ -s "$pictures" ]]; then
+  for item in `cat $pictures`; do
+    echo "$item" >> $link_file
+    wget -O ./Pictures/pic$i${item: -4} $item
+    i=$[i+1]
+  done
+else
+  echo "No pictures found" >> $link_file
+fi
+
+
+
+
+echo >> $link_file
+echo "Twitter Profile:" >> $link_file
+
+if [[ -s "$twitter_url" ]]; then
+  for item in `cat $twitter_url`; do
+    echo "$item" >> $link_file
+  done
+else
+  echo "No twitter profile found" >> $link_file
+fi
+
+
+rm -f *.xml urls pics twitter youtube
+
+clear
+cat ./$link_file
