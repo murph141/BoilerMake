@@ -104,6 +104,7 @@ fi
 
 
 
+echo "HERE"
 #Family Members
 echo >> $link_file
 echo "Possible family members:" >> $link_file
@@ -116,6 +117,7 @@ else
   echo "No possible family member(s) found" >> $link_file
 fi
 
+echo "HERE2"
 
 
 #IDs
@@ -129,6 +131,8 @@ if [[ -s "$id_file" ]]; then
 else
   echo "No possible user ID(s) found" >> $link_file
 fi
+
+
 # Removes extra file
 rm -f pics twitter youtube
 
