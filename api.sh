@@ -13,7 +13,7 @@ echo "If you don't know any of the values, leave them blank"
 read -p "Enter fire name: " firstname
 read -p "Enter middle name: " middlename
 read -p "Enter last name: " lastname
-read -p "Enter state: " state
+read -p "Enter state (Two letter code): " state
 read -p "Enter city: " city
 read -p "Enter email: " email
 read -p "Enter phone: " phone
