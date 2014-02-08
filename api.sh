@@ -81,7 +81,7 @@ fi
 
 
 # Removes extra file
-rm -f urls pics twitter youtube
+rm -f pics twitter youtube
 
 clear
 cat ./$link_file
