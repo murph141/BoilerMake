@@ -21,7 +21,7 @@ read -p "Enter last name: " lastname
 read -p "Enter state (Two letter code): " state
 read -p "Enter city: " city
 read -p "Enter email: " email
-read -p "Enter phone: " phone
+read -p "Enter phone (Without dashes): " phone
 read -p "Enter username: " username
 
 # Create a new directory
@@ -54,8 +54,8 @@ awk '/family/{getine; getline; getline; getline; getline; getline; getine; getli
 #Generate ID file
 awk '/<user_id>/{getline; print}' $clean_file | sort -u > $id_file
 
-#Generate Phone Number file
-awk '/<date_range>/{getline; getine; print}' $clean_file | grep -v 01-01 | grep -v 12-31 | sort -u >> $date_file
+#Generate Birthday file
+awk '/<date_range>/{getline; getine; getline; print}' $clean_file | grep -v 01-01 | grep -v 12-31 | sort -u >> $date_file
 
 #Counter variable
 i=1
@@ -150,7 +150,7 @@ fi
 
 #Birthdays
 echo >> $link_file
-echo "Possible Birthday(s):"
+echo "Possible Birthday(s):" >> $link_file
 
 if [[ -s "$date_file" ]]; then
   for item in `cat $date_file`; do
@@ -163,7 +163,7 @@ fi
 
 
 # Removes extra file
-rm -f $api_file $url_file $clean_file $twitter_file $youtube_url $pictures $family_file $id_file $date_file
+#rm -f $api_file $url_file $clean_file $twitter_url $youtube_url $pictures $family_file $id_file $date_file
 
 clear
 cat ./$link_file
