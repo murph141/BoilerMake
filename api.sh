@@ -10,6 +10,7 @@ pictures=Pics
 link_file=Profiles
 family_file=Family
 id_file=IDs
+date_file=Birthday
 
 #Take the user input
 clear
@@ -52,6 +53,8 @@ awk '/family/{getine; getline; getline; getline; getline; getline; getine; getli
 #Generate ID file
 awk '/<user_id>/{getline; print}' $clean_file | sort -u > $id_file
 
+#Generate Phone Number file
+awk '/<date_range>/{getline; getine; print}' $clean_file | grep -v 01-01 | grep -v 12-31 | sort -u >> $date_file
 
 #Counter variable
 i=1
@@ -60,9 +63,19 @@ i=1
 mkdir -p Pictures
 
 
-#Youtube Profile
 touch $link_file
-echo "Possible Youtube Profile(s):" > $link_file
+echo "Information Supplied:" > $link_file
+echo "First name: $firstname" >> $link_file
+echo "Middle name: $middlename" >> $link_file
+echo "Last name: $lastname" >> $link_file
+echo "State: $state" >> $link_file
+echo "City: $city" >> $link_file
+echo "Email: $email" >> $link_file
+echo "Phone: $phone" >> $link_file
+echo "Username: $username" >> $link_file
+
+#Youtube Profile
+echo "Possible Youtube Profile(s):" >> $link_file
 
 if [[ -s "$youtube_url" ]]; then
   for item in `cat $youtube_url`; do
@@ -131,8 +144,23 @@ else
 fi
 
 
+
+#Birthdays
+echo >> $link_file
+echo "Possible Birthday(s):"
+
+if [[ -s "$date_file" ]]; then
+  for item in `cat $date_file`; do
+    echo "$item" >> $link_file
+  done
+else
+  echo "No possible birthday(s) found" >> $link_file
+fi
+
+
+
 # Removes extra file
-rm -f
+rm -f $api_file $url_file $clean_file $twitter_file $youtube_url $pictures $family_file $id_file
 
 clear
 cat ./$link_file
