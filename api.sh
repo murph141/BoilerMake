@@ -29,6 +29,7 @@ dir="$firstname$lastname$username"
 mkdir -p $dir
 cd $dir
 
+
 #Generate xml file via the Pipl API
 wget -O $api_file "http://api.pipl.com/search/v3/xml/?email=$email&phone=$phone&username=$username&first_name=$firstname&last_name=$lastname&middle_name=$middlename&state=$state&city=$city&exact_name=0&query_params_mode=and&key=samplekey"
 
