@@ -26,7 +26,7 @@ cd $dir
 
 wget -O $api_file "http://api.pipl.com/search/v3/xml/?email=$email&phone=$phone&username=$username&first_name=$firstname&last_name=$lastname&middle_name=$middlename&state=$state&city=$city&exact_name=0&query_params_mode=and&key=samplekey"
 
-sed -e 's/>/>\n/g' -e 's_</_\n</_g' $api_file >> $clean_file
+sed -e 's/>/>\n/g' -e 's_</_\n</_g' $api_file | grep -v "^$" >> $clean_file
 awk '/url/{getline; print}' $clean_file | grep -v \<domain\> | grep -v "^$" | grep -v "peoplesmart" | grep -v "instantcheckmate" | grep -v "api.pipl" | grep -v "^$" | sort -u > $url_file
 grep twitter urls | grep -v Support | sort -u > $twitter_url
 grep youtube.com/user urls | sort -u > $youtube_url
