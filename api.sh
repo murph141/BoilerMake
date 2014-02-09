@@ -111,7 +111,7 @@ echo "Possible family members:" >> $link_file
 if [[ -s "$family_file" ]]; then
   while read p; do
     echo $p >> $link_file
-  done
+  done < $family_file
 else
   echo "No possible family member(s) found" >> $link_file
 fi
@@ -132,7 +132,7 @@ fi
 
 
 # Removes extra file
-rm -f pics twitter youtube
+rm -f
 
 clear
 cat ./$link_file
