@@ -164,8 +164,12 @@ temp_file=temp
 
 awk '!/</{print}' $link_file | awk '!/>/{print}' > $temp_file
 
+rm -rf $link_file
+
+mv $temp_file $link_file
+
 # Removes extra file
-rm -f $api_file $url_file $clean_file $twitter_url $youtube_url $pictures $family_file $id_file $date_file
+rm -f $api_file $url_file $clean_file $twitter_url $youtube_url $pictures $family_file $id_file $date_file $temp_file
 
 clear
 cat ./$link_file
