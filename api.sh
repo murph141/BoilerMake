@@ -17,7 +17,7 @@ imgur_file=imgur-links
 clear
 echo "This program assumes you have Python3 installed, make sure you do"
 echo "If you don't know any of the values, leave them blank"
-read -p "Enter fire name: " firstname
+read -p "Enter first name: " firstname
 read -p "Enter middle name: " middlename
 read -p "Enter last name: " lastname
 read -p "Enter state (Two letter code): " state
