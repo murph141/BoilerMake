@@ -38,19 +38,19 @@ sed -e 's/>/>\n/g' -e 's_</_\n</_g' $api_file | grep -v "^$" >> $clean_file
 awk '/url/{getline; print}' $clean_file | grep -v \<domain\> | grep -v "^$" | grep -v "peoplesmart" | grep -v "instantcheckmate" | grep -v "api.pipl" | grep -v "^$" | grep -v \< | sort -u > $url_file
 
 #Generate twitter file
-grep twitter urls | grep -v Support | sort -u > $twitter_url
+grep twitter $url_file | grep -v Support | sort -u > $twitter_url
 
 #Generate youtube file
-grep youtube.com/user urls | sort -u > $youtube_url
+grep youtube.com/user $url_file | sort -u > $youtube_url
 
 #Generate picture file
-egrep -i "jpg|png|bmp" urls > $pictures
+egrep -i "jpg|png|bmp" $url_file > $pictures
 
 #Generate family file
 awk '/family/{getine; getline; getline; getline; getline; getline; getine; getline; getline; getline; getline; getline; getline; getline; print}' $clean_file | sort -u > $family_file
 
 #Generate ID file
-awk '/<user_id>{getline; print}' $clean_file | sort -u > $id_file
+awk '/<user_id>/{getline; print}' $clean_file | sort -u > $id_file
 
 
 #Counter variable
