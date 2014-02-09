@@ -97,7 +97,7 @@ echo "Possible Picture(s):" >> $link_file
 if [[ -s "$pictures" ]]; then
   for item in `cat $pictures`; do
     echo "$item" >> $link_file
-    wget -O ./Pictures/pic$i${item: -4} $item
+    wget -O ./Pictures/$dir$i${item: -4} $item
     i=$[i+1]
   done
 else
@@ -171,5 +171,11 @@ mv $temp_file $link_file
 # Removes extra file
 rm -f $api_file $url_file $clean_file $twitter_url $youtube_url $pictures $family_file $id_file $date_file $temp_file
 
+#Upload the pictures to Imgur
+cd ../imgur-python/
+
+for item in `ls ../$dir/Pictures`; do
+  python3 main.py upload ../$dir/Pictures/"$item" >> ../$dir/imgur-links 2> /dev/null
+done
+
 clear
-cat ./$link_file
