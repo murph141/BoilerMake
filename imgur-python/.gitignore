@@ -1,5 +1,4 @@
 *.swp
 *.swo
 *.pyc
-config.json
 config.json.sample.*
