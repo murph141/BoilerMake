@@ -11,6 +11,7 @@ link_file=Profiles
 family_file=Family
 id_file=IDs
 date_file=Birthday
+imgur_file=imgur-links
 
 #Take the user input
 clear
@@ -31,7 +32,7 @@ cd $dir
 
 
 #Generate xml file via the Pipl API
-wget -O $api_file "http://api.pipl.com/search/v3/xml/?email=$email&phone=$phone&username=$username&first_name=$firstname&last_name=$lastname&middle_name=$middlename&state=$state&city=$city&exact_name=0&query_params_mode=and&key=samplekey"
+wget -O $api_file "http://api.pipl.com/search/v3/xml/?email=$email&phone=$phone&username=$username&first_name=$firstname&last_name=$lastname&middle_name=$middlename&state=$state&city=$city&exact_name=0&query_params_mode=and&key=ekwszqxgzymbkcnfduvmrmm9"
 
 #Generate clean file
 sed -e 's/>/>\n/g' -e 's_</_\n</_g' $api_file | grep -v "^$" >> $clean_file
@@ -174,8 +175,23 @@ rm -f $api_file $url_file $clean_file $twitter_url $youtube_url $pictures $famil
 #Upload the pictures to Imgur
 cd ../imgur-python/
 
+clear
+
+echo "Upload to Imgur in process. Please wait."
+
 for item in `ls ../$dir/Pictures`; do
-  python3 main.py upload ../$dir/Pictures/"$item" >> ../$dir/imgur-links 2> /dev/null
+  python3 main.py upload ../$dir/Pictures/"$item" >> ../$dir/$imgur_file 2> /dev/null
+  echo -n "."
 done
+
+rm -rf $temp_file
+
+cd ../$dir
+
+sed -e ' s/Error 400/Image uplaod failed/g' -e 's/Error 429/Image upload failed/g' $imgur_file | grep -v "^$" | grep -v error > $temp_file
+
+mv $temp_file $imgur_file
+
+rm -rf $temp_file
 
 clear
