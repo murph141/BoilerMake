@@ -104,20 +104,18 @@ fi
 
 
 
-echo "HERE"
 #Family Members
 echo >> $link_file
 echo "Possible family members:" >> $link_file
 
 if [[ -s "$family_file" ]]; then
-  for item in `cat $family_url`; do
-    echo "$item" >> $link_file
+  while read p; do
+    echo $p >> $link_file
   done
 else
   echo "No possible family member(s) found" >> $link_file
 fi
 
-echo "HERE2"
 
 
 #IDs
