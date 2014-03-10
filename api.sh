@@ -65,7 +65,7 @@ i=1
 #Make a directory to store the pictures
 mkdir -p Pictures
 
-
+#Store input information in one central file
 touch $link_file
 echo "Information Supplied:" > $link_file
 echo "First name: $firstname" >> $link_file
